@@ -9,8 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.List;
 
-;
-
 public class MainView {
 
     public JPanel buildMainPanel() {
@@ -48,7 +46,7 @@ public class MainView {
             public void focusGained(FocusEvent e) {
                 //获取焦点时，清空提示内容
                 String temp = textField.getText();
-                if(temp.equals(hintText)) {
+                if (temp.equals(hintText)) {
                     textField.setText("");
                     textField.setForeground(Color.BLACK);
                 }
@@ -58,7 +56,7 @@ public class MainView {
             public void focusLost(FocusEvent e) {
                 //失去焦点时，没有输入内容，显示提示内容
                 String temp = textField.getText();
-                if(temp.equals("")) {
+                if (temp.equals("")) {
                     textField.setForeground(Color.GRAY);
                     textField.setText(hintText);
                 }
@@ -147,13 +145,10 @@ public class MainView {
 
         JPanel panel = new JPanel(null);
 
-        JTextArea label = new JTextArea(text);
-        label.setFont(new Font(null, Font.PLAIN, 12));
-        label.setBounds(0, 0, 480, 400);
-
-        // 添加标签到面板
-        panel.add(label);
-
+        JTextArea textArea = new JTextArea(text);
+        textArea.setFont(new Font(null, Font.PLAIN, 12));
+        textArea.setBounds(0, 0, 480, 400);
+        panel.add(textArea);
         return panel;
     }
 
