@@ -5,6 +5,8 @@ import com.xuanbing.service.SqlHandle;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.List;
 
 ;
@@ -28,8 +30,43 @@ public class MainView {
         panel.setLayout(null);
 
         JLabel label = new JLabel("请输入建表语句：");
-        label.setBounds(10, 10, 400, 20);
+        label.setBounds(10, 10, 120, 20);
         panel.add(label);
+        JTextField nullField = new JTextField();
+        panel.add(nullField);
+
+        JLabel label1 = new JLabel("导出地址：");
+        label1.setBounds(225, 10, 150, 20);
+        panel.add(label1);
+        JTextField textField = new JTextField();
+        final String hintText = "请输入导出文件地址：";
+        textField.setText(hintText);
+        textField.setForeground(Color.GRAY);
+        textField.addFocusListener(new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                //获取焦点时，清空提示内容
+                String temp = textField.getText();
+                if(temp.equals(hintText)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                //失去焦点时，没有输入内容，显示提示内容
+                String temp = textField.getText();
+                if(temp.equals("")) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(hintText);
+                }
+            }
+        });
+        textField.setBounds(290, 10, 200, 25);
+        panel.add(textField);
+
 
         JTextArea textArea = new JTextArea();
         textArea.setBounds(10, 40, 480, 430);
